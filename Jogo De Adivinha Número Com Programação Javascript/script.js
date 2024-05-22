@@ -52,6 +52,7 @@ function processGuess(guess, guessInput, result, attemptsSpan, guessedNumbersLis
 
     if (proximity === 0) {
         result.textContent = `Parabéns! Você acertou o número secreto ${secretNumber} em ${attempts} tentativas.`;
+        playSound('audio/correct.mp3');
         if (attempts < 10) {
             currentLevel++;
             levelSpan.textContent = currentLevel;
@@ -80,10 +81,13 @@ function updateDirection(guess) {
 function provideFeedback(result, proximity) {
     if (proximity <= 5) {
         result.textContent = 'Bem próximo! Continue assim.';
+        playSound('audio/close.mp3');
     } else if (proximity <= 10) {
         result.textContent = 'Está próximo! Continue tentando.';
+        playSound('audio/close.mp3');
     } else {
         result.textContent = 'Ainda distante. Continue tentando.';
+        playSound('audio/wrong.mp3');
     }
 }
 
@@ -97,4 +101,9 @@ function resetGame() {
     document.getElementById('guessedNumbers').textContent = 'Números tentados:';
     document.getElementById('arrow-left').style.display = 'none';
     document.getElementById('arrow-right').style.display = 'none';
+}
+
+function playSound(src) {
+    const audio = new Audio(src);
+    audio.play();
 }
