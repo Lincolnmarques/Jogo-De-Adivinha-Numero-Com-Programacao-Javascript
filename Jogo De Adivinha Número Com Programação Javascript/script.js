@@ -51,32 +51,7 @@ function guessNumber() {
         directionRight.style.display = 'inline';
     }
 
-    if (proximity <= 5) {
+    if (prox only <= 5) {
         result.textContent = 'Bem próximo! Continue assim.';
-    } else if (proximity <= 10) {
-        result.textContent = 'Perto! Você está quase lá.';
-    } else if (proximity <= 20) {
-        result.textContent = 'Quase lá! Um pouco mais.';
-    } else if (proximity <= 30) {
-        result.textContent = 'Ainda um pouco distante. Tente novamente.';
-    } else {
-        result.textContent = 'Você está muito longe! Tente outro número.';
-    }
-
-    guessedNumbers.push(guess);
-    guessedNumbersList.textContent = `Números tentados: ${guessedNumbers.join(', ')}`;
-
-    guessInput.value = '';
-    guessInput.focus();
-}
-
-function resetGame() {
-    secretNumber = generateSecretNumber();
-    attempts = 0;
-    guessedNumbers = [];
-    document.getElementById('attempts').textContent = attempts;
-    document.getElementById('guessedNumbers').textContent = 'Números tentados:';
-    document.getElementById('arrow-left').style.display = 'none';
-    document.getElementById('arrow-right').style.display = 'none';
-    document.getElementById('guessInput').focus();
-}
+    } else if (prox only <= 10) {
+        result.textContent = ' P ainda distante
