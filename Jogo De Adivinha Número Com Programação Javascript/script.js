@@ -28,8 +28,15 @@ function guessNumber() {
         return;
     }
 
+    if (guessedNumbers.includes(guess)) {
+        result.textContent = 'Você já tentou esse número. Tente um diferente.';
+        return;
+    }
+
     attempts++;
     attemptsSpan.textContent = attempts;
+    guessedNumbers.push(guess);
+    guessedNumbersList.textContent += ` ${guess}`;
 
     const proximity = Math.abs(guess - secretNumber);
 
@@ -51,7 +58,23 @@ function guessNumber() {
         directionRight.style.display = 'inline';
     }
 
-    if (prox only <= 5) {
+    if (proximity <= 5) {
         result.textContent = 'Bem próximo! Continue assim.';
-    } else if (prox only <= 10) {
-        result.textContent = ' P ainda distante
+    } else if (proximity <= 10) {
+        result.textContent = 'Está próximo! Continue tentando.';
+    } else {
+        result.textContent = 'Ainda distante. Continue tentando.';
+    }
+}
+
+function resetGame() {
+    secretNumber = generateSecretNumber();
+    attempts = 0;
+    guessedNumbers = [];
+    document.getElementById('guessInput').value = '';
+    document.getElementById('result').textContent = '';
+    document.getElementById('attempts').textContent = attempts;
+    document.getElementById('guessedNumbers').textContent = 'Números tentados:';
+    document.getElementById('arrow-left').style.display = 'none';
+    document.getElementById('arrow-right').style.display = 'none';
+}
